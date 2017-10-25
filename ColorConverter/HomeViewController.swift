@@ -38,15 +38,20 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     var bannerView: GADBannerView!
     
+    var freeVersion: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        addBannerViewToView(bannerView)
         
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
+        if (freeVersion) {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            addBannerViewToView(bannerView)
+            
+            bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
         
         // Do any additional setup after loading the view.        
         labelArray = [themeLabel, feedbackLabel, rateLabel, shareLabel]

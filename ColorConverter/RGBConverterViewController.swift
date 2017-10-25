@@ -41,7 +41,7 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     var interstitial: GADInterstitial?
     
-    var freeVersion: Bool = false
+    var freeVersion: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,6 +210,34 @@ extension UITextField {
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
+    }
+}
+
+extension HomeViewControllerDelegate {
+    
+    func createAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "No, thanks.", style: .cancel  , handler: nil))
+        alert.addAction(UIAlertAction(title: "Upgrade", style: .default, handler: { (action) in
+            self.rateApp(appId: "id1300478165") { success in
+                print("RateApp \(success)")
+            }
+        }))
+        
+        return alert
+    }
+    
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
 }
 

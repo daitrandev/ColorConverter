@@ -39,6 +39,10 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
             
             textField.isEnabled = false
             textField.backgroundColor = UIColor.gray
+            
+            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+            
+            present(alert, animated: true, completion: nil)
         }
         
         // Do any additional setup after loading the view.
