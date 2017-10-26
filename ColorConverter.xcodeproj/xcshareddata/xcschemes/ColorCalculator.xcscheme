@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
-               BuildableName = "ColorCalculator.app"
-               BlueprintName = "ColorCalculator"
-               ReferencedContainer = "container:ColorCalculator.xcodeproj">
+               BuildableName = "ColorConverter.app"
+               BlueprintName = "ColorConverter"
+               ReferencedContainer = "container:ColorConverter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
-            BuildableName = "ColorCalculator.app"
-            BlueprintName = "ColorCalculator"
-            ReferencedContainer = "container:ColorCalculator.xcodeproj">
+            BuildableName = "ColorConverter.app"
+            BlueprintName = "ColorConverter"
+            ReferencedContainer = "container:ColorConverter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
-            BuildableName = "ColorCalculator.app"
-            BlueprintName = "ColorCalculator"
-            ReferencedContainer = "container:ColorCalculator.xcodeproj">
+            BuildableName = "ColorConverter.app"
+            BlueprintName = "ColorConverter"
+            ReferencedContainer = "container:ColorConverter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
-            BuildableName = "ColorCalculator.app"
-            BlueprintName = "ColorCalculator"
-            ReferencedContainer = "container:ColorCalculator.xcodeproj">
+            BuildableName = "ColorConverter.app"
+            BlueprintName = "ColorConverter"
+            ReferencedContainer = "container:ColorConverter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

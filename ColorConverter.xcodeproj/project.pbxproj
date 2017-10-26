@@ -26,7 +26,7 @@
 		2325E1351F9CEF0100154FEB /* HexConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexConverterViewController.swift; sourceTree = "<group>"; };
 		23380A741F9C412A009DFBD6 /* UIColor+HSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HSV.swift"; sourceTree = "<group>"; };
 		23C0D79C1F9BA0E700BF29AC /* HSVConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HSVConverterViewController.swift; sourceTree = "<group>"; };
-		23C273EB1F9AEB11009EC53B /* ColorCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23C273EB1F9AEB11009EC53B /* ColorConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23C273EE1F9AEB11009EC53B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23C273F31F9AEB11009EC53B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23C273F51F9AEB11009EC53B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		23C273EC1F9AEB11009EC53B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23C273EB1F9AEB11009EC53B /* ColorCalculator.app */,
+				23C273EB1F9AEB11009EC53B /* ColorConverter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +100,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		23C273EA1F9AEB11009EC53B /* ColorCalculator */ = {
+		23C273EA1F9AEB11009EC53B /* ColorConverter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23C273FD1F9AEB11009EC53B /* Build configuration list for PBXNativeTarget "ColorCalculator" */;
+			buildConfigurationList = 23C273FD1F9AEB11009EC53B /* Build configuration list for PBXNativeTarget "ColorConverter" */;
 			buildPhases = (
 				23C273E71F9AEB11009EC53B /* Sources */,
 				23C273E81F9AEB11009EC53B /* Frameworks */,
@@ -112,9 +112,9 @@
 			);
 			dependencies = (
 			);
-			name = ColorCalculator;
+			name = ColorConverter;
 			productName = ColorConverter;
-			productReference = 23C273EB1F9AEB11009EC53B /* ColorCalculator.app */;
+			productReference = 23C273EB1F9AEB11009EC53B /* ColorConverter.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -134,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 23C273E61F9AEB11009EC53B /* Build configuration list for PBXProject "ColorCalculator" */;
+			buildConfigurationList = 23C273E61F9AEB11009EC53B /* Build configuration list for PBXProject "ColorConverter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -147,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23C273EA1F9AEB11009EC53B /* ColorCalculator */,
+				23C273EA1F9AEB11009EC53B /* ColorConverter */,
 			);
 		};
 /* End PBXProject section */
@@ -340,7 +340,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		23C273E61F9AEB11009EC53B /* Build configuration list for PBXProject "ColorCalculator" */ = {
+		23C273E61F9AEB11009EC53B /* Build configuration list for PBXProject "ColorConverter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23C273FB1F9AEB11009EC53B /* Debug */,
@@ -349,7 +349,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23C273FD1F9AEB11009EC53B /* Build configuration list for PBXNativeTarget "ColorCalculator" */ = {
+		23C273FD1F9AEB11009EC53B /* Build configuration list for PBXNativeTarget "ColorConverter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				23C273FE1F9AEB11009EC53B /* Debug */,
