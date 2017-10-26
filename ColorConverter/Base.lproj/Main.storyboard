@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--HSV Calculator-->
+        <!--HSV Color-->
         <scene sceneID="fmL-Sm-mv1">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9w9-cn-3pd" customClass="HSVConverterViewController" customModule="ColorCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9w9-cn-3pd" customClass="HSVConverterViewController" customModule="ColorConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YgY-pe-hGK"/>
                         <viewControllerLayoutGuide type="bottom" id="5LK-Cp-ucp"/>
@@ -133,7 +133,7 @@
                             <constraint firstItem="Qif-WL-BHb" firstAttribute="top" secondItem="YgY-pe-hGK" secondAttribute="bottom" constant="8" id="zBy-cy-oj7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HSV Calculator" id="nuX-WL-Cin">
+                    <navigationItem key="navigationItem" title="HSV Color" id="nuX-WL-Cin">
                         <barButtonItem key="leftBarButtonItem" image="home" id="Gza-RT-ttT">
                             <connections>
                                 <segue destination="OcD-Vm-3mr" kind="presentation" id="XWO-ea-j0x"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="2101.875" y="-591.54929577464793"/>
         </scene>
-        <!--RGB Calculator-->
+        <!--RGB Color-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="RGBConverterViewController" customModule="ColorCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="RGBConverterViewController" customModule="ColorConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -284,7 +284,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jD3-wE-Jtg" secondAttribute="bottom" constant="13" id="qGy-ZJ-UKy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="RGB Calculator" id="GO0-ye-zn8">
+                    <navigationItem key="navigationItem" title="RGB Color" id="GO0-ye-zn8">
                         <barButtonItem key="leftBarButtonItem" image="home" id="skW-j5-Y4x">
                             <connections>
                                 <segue destination="OcD-Vm-3mr" kind="presentation" id="veq-I7-XfQ"/>
@@ -316,7 +316,7 @@
         <!--Home-->
         <scene sceneID="BJa-Bu-Bpl">
             <objects>
-                <viewController id="gaX-CT-GZn" customClass="HomeViewController" customModule="ColorCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gaX-CT-GZn" customClass="HomeViewController" customModule="ColorConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="25f-D7-6Ql"/>
                         <viewControllerLayoutGuide type="bottom" id="cmd-sv-XPZ"/>
@@ -465,10 +465,10 @@
             </objects>
             <point key="canvasLocation" x="4074.375" y="180.63380281690141"/>
         </scene>
-        <!--CMYK Calculator-->
+        <!--CMYK Color-->
         <scene sceneID="lgc-3d-jE3">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hEc-xY-kaJ" customClass="CMYKConverterViewController" customModule="ColorCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hEc-xY-kaJ" customClass="CMYKConverterViewController" customModule="ColorConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="THN-m4-zJV"/>
                         <viewControllerLayoutGuide type="bottom" id="LdR-6u-Gdr"/>
@@ -623,7 +623,7 @@
                             <constraint firstItem="E0o-uR-gpM" firstAttribute="leading" secondItem="2mQ-LG-afe" secondAttribute="trailing" constant="8" id="z2X-qD-WXx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CMYK Calculator" id="5S0-mI-hdz">
+                    <navigationItem key="navigationItem" title="CMYK Color" id="5S0-mI-hdz">
                         <barButtonItem key="leftBarButtonItem" image="home" id="sWt-cl-Dq8">
                             <connections>
                                 <segue destination="OcD-Vm-3mr" kind="presentation" id="dgc-vR-YQ3"/>
@@ -655,10 +655,10 @@
             </objects>
             <point key="canvasLocation" x="2111.25" y="898.94366197183103"/>
         </scene>
-        <!--Hex Calculator-->
+        <!--Hex Color-->
         <scene sceneID="VFY-oI-X2I">
             <objects>
-                <viewController id="jW7-zZ-hce" customClass="HexConverterViewController" customModule="ColorCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jW7-zZ-hce" customClass="HexConverterViewController" customModule="ColorConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c5Z-KG-ZbN"/>
                         <viewControllerLayoutGuide type="bottom" id="1V0-pu-Rf3"/>
@@ -708,7 +708,7 @@
                             <constraint firstItem="Wgn-Fq-2aB" firstAttribute="top" secondItem="c5Z-KG-ZbN" secondAttribute="bottom" constant="8" id="yX4-we-OoN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Hex Calculator" id="of0-9a-3KY">
+                    <navigationItem key="navigationItem" title="Hex Color" id="of0-9a-3KY">
                         <barButtonItem key="leftBarButtonItem" image="home" id="r7i-Sm-GjV">
                             <connections>
                                 <segue destination="OcD-Vm-3mr" kind="presentation" id="Uqy-z0-jhd"/>
@@ -859,6 +859,6 @@
         <image name="theme" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XWO-ea-j0x"/>
+        <segue reference="Uqy-z0-jhd"/>
     </inferredMetricsTieBreakers>
 </document>
