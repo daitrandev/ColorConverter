@@ -39,7 +39,7 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     
     var bannerView: GADBannerView!
     
-    var freeVersion: Bool = true
+    var freeVersion: Bool = false
     
     @IBOutlet weak var viewColor: UIView!
     
@@ -73,10 +73,11 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         loadColor()
         showColor()
-        
-        let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
-        
-        present(alert, animated: true, completion: nil)
+        if (freeVersion) {
+            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

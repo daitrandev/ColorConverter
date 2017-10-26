@@ -41,7 +41,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     
     var bannerView: GADBannerView!
     
-    var freeVersion: Bool = true
+    var freeVersion: Bool = false
     
     @IBOutlet weak var viewColor: UIView!
     
@@ -77,9 +77,12 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         loadColor()
         showColor()
         
-        let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+        if (freeVersion) {
+            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+            
+            present(alert, animated: true, completion: nil)
+        }
         
-        present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
