@@ -220,7 +220,7 @@ extension HomeViewControllerDelegate {
 
         alert.addAction(UIAlertAction(title: "No, thanks.", style: .cancel  , handler: nil))
         alert.addAction(UIAlertAction(title: "Upgrade", style: .default, handler: { (action) in
-            self.rateApp(appId: "id1300478165") { success in
+            self.rateApp(appId: "id1300442070") { success in
                 print("RateApp \(success)")
             }
         }))

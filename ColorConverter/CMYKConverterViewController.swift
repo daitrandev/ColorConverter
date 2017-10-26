@@ -56,10 +56,6 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
             bannerView.delegate = self
-            
-            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
-            
-            present(alert, animated: true, completion: nil)
         }
 
         // Do any additional setup after loading the view.
@@ -80,6 +76,10 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     override func viewWillAppear(_ animated: Bool) {
         loadColor()
         showColor()
+        
+        let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+        
+        present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

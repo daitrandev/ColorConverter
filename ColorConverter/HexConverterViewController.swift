@@ -39,10 +39,6 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
             
             textField.isEnabled = false
             textField.backgroundColor = UIColor.gray
-            
-            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
-            
-            present(alert, animated: true, completion: nil)
         }
         
         // Do any additional setup after loading the view.
@@ -59,8 +55,9 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     override func viewWillAppear(_ animated: Bool) {
         loadColor()
         
-        let RGBValue = UtilitiesConverter.ConvertHexColorToRGB(hexString: textField.text!)
-        showColor(red: CGFloat(RGBValue[0])/255, green: CGFloat(RGBValue[1])/255, blue: CGFloat(RGBValue[2])/255)
+        let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
