@@ -41,7 +41,7 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     var interstitial: GADInterstitial?
     
-    var freeVersion: Bool = true
+    var freeVersion: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +119,7 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         navigationController?.navigationBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         navigationController?.navigationBar.tintColor = mainLabelColor[currentThemeIndex]
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: mainBackgroundColor[1 - currentThemeIndex]]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: mainBackgroundColor[1 - currentThemeIndex]]
         
         tabBarController?.tabBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]

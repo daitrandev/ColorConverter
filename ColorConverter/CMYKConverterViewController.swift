@@ -137,7 +137,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         navigationController?.navigationBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         navigationController?.navigationBar.tintColor = mainLabelColor[currentThemeIndex]
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: mainBackgroundColor[1 - currentThemeIndex]]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: mainBackgroundColor[1 - currentThemeIndex]]
         
         tabBarController?.tabBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
