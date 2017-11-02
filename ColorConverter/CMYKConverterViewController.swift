@@ -110,7 +110,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
             return true
         }
         
-        if (textField.text?.characters.count == 6) {
+        if (textField.text?.count == 6) {
             return false
         }
         
