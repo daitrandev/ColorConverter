@@ -20,6 +20,8 @@
 		23C274071F9AFC54009EC53B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C274061F9AFC54009EC53B /* HomeViewController.swift */; };
 		23CE54EF1F9B355300446CCB /* UtilitiesConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */; };
 		23D3EC4F1FA0734D0087AF46 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */; };
+		23DA0F8520565FCF0077761A /* Protocols & Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DA0F8420565FCF0077761A /* Protocols & Extensions.swift */; };
+		23DA0F8720568B5A0077761A /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DA0F8620568B5A0077761A /* NotificationKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		23C274061F9AFC54009EC53B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesConverter.swift; sourceTree = "<group>"; };
 		23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		23DA0F8420565FCF0077761A /* Protocols & Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocols & Extensions.swift"; sourceTree = "<group>"; };
+		23DA0F8620568B5A0077761A /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,18 +56,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23380A731F9C412A009DFBD6 /* ColorWithHSV-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				23380A741F9C412A009DFBD6 /* UIColor+HSV.swift */,
-			);
-			path = "ColorWithHSV-iOS";
-			sourceTree = "<group>";
-		};
 		23C273E21F9AEB11009EC53B = {
 			isa = PBXGroup;
 			children = (
-				23380A731F9C412A009DFBD6 /* ColorWithHSV-iOS */,
 				23C273ED1F9AEB11009EC53B /* ColorConverter */,
 				23C273EC1F9AEB11009EC53B /* Products */,
 				23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */,
@@ -82,9 +77,12 @@
 			isa = PBXGroup;
 			children = (
 				23C273EE1F9AEB11009EC53B /* AppDelegate.swift */,
+				23380A741F9C412A009DFBD6 /* UIColor+HSV.swift */,
 				23C274021F9AEFA2009EC53B /* TableViewCell.swift */,
 				23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */,
+				23DA0F8620568B5A0077761A /* NotificationKeys.swift */,
 				23C274061F9AFC54009EC53B /* HomeViewController.swift */,
+				23DA0F8420565FCF0077761A /* Protocols & Extensions.swift */,
 				23C274001F9AEE1A009EC53B /* RGBConverterViewController.swift */,
 				23C274041F9AF870009EC53B /* CMYKConverterViewController.swift */,
 				23C0D79C1F9BA0E700BF29AC /* HSVConverterViewController.swift */,
@@ -173,6 +171,7 @@
 			files = (
 				23C0D79D1F9BA0E700BF29AC /* HSVConverterViewController.swift in Sources */,
 				23C274071F9AFC54009EC53B /* HomeViewController.swift in Sources */,
+				23DA0F8520565FCF0077761A /* Protocols & Extensions.swift in Sources */,
 				23CE54EF1F9B355300446CCB /* UtilitiesConverter.swift in Sources */,
 				23C274031F9AEFA2009EC53B /* TableViewCell.swift in Sources */,
 				23C274051F9AF870009EC53B /* CMYKConverterViewController.swift in Sources */,
@@ -180,6 +179,7 @@
 				2325E1361F9CEF0100154FEB /* HexConverterViewController.swift in Sources */,
 				23C274011F9AEE1A009EC53B /* RGBConverterViewController.swift in Sources */,
 				23C273EF1F9AEB11009EC53B /* AppDelegate.swift in Sources */,
+				23DA0F8720568B5A0077761A /* NotificationKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

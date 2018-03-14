@@ -25,11 +25,13 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     @IBOutlet weak var viewColor: UIView!
     
-    var valueLabelArray:[UILabel?] = []
+    var rgb: RGB?
     
-    var labelArray:[UILabel?] = []
+    var valueLabelArray:[UILabel] = []
     
-    var sliderArray:[UISlider?] = []
+    var labelArray:[UILabel] = []
+    
+    var sliderArray:[UISlider] = []
     
     let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
     
@@ -72,12 +74,10 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         valueLabelArray = [rValueLabel, gValueLabel, bValueLabel]
         sliderArray = [rValueSlider, gValueSlider, bValueSlider]
         labelArray = [rLabel, gLabel, bLabel]
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadColor()
+        loadTheme()
         showColor()
     }
     
@@ -94,24 +94,40 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     @IBAction func OnRefreshAction(_ sender: Any) {
         for i in 0..<3 {
-            valueLabelArray[i]?.text = String(128)
-            sliderArray[i]?.value = 128
+            valueLabelArray[i].text = String(128)
+            sliderArray[i].value = 128
         }
         
         showColor()
     }
     
-    @IBAction func OnSlideAction(_ sender: UISlider) {
-        valueLabelArray[sender.tag]?.text = String(Int(sender.value))
-        
+    @IBAction func OnSlideValueChanged(_ sender: UISlider) {
+        valueLabelArray[sender.tag].text = String(Int(sender.value))
+        UtilitiesConverter.rgb = nil
         showColor()
     }
     
     func showColor() {
-         viewColor?.backgroundColor = UIColor(red: CGFloat(Int(sliderArray[0]!.value))/255, green: CGFloat(Int(sliderArray[1]!.value))/255, blue: CGFloat(Int(sliderArray[2]!.value))/255, alpha: 1)
+        let rgbValue = UtilitiesConverter.rgb ?? (red: CGFloat(sliderArray[0].value/255), green: CGFloat(sliderArray[1].value/255), blue: CGFloat(sliderArray[2].value/255),alpha: CGFloat(1))
+        
+        if let rgb = UtilitiesConverter.rgb  {
+            sliderArray[0].value = Float(rgb.red)*255
+            sliderArray[1].value = Float(rgb.green)*255
+            sliderArray[2].value = Float(rgb.blue)*255
+            for i in 0..<sliderArray.count {
+                valueLabelArray[i].text = String(Int(sliderArray[i].value))
+            }
+        }
+        let red = rgbValue.red
+        let green = rgbValue.green
+        let blue = rgbValue.blue
+        let alpha = CGFloat(1.0)
+        
+        viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        UtilitiesConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func loadColor() {
+    func loadTheme() {
         currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
         
         view.backgroundColor = mainBackgroundColor[currentThemeIndex]
@@ -125,9 +141,9 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
         
         for i in 0..<valueLabelArray.count {
-            valueLabelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            labelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            sliderArray[i]?.tintColor = mainLabelColor[currentThemeIndex]
+            valueLabelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            labelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
         if (currentThemeIndex == 0) {
@@ -188,14 +204,6 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     }
 }
 
-extension UIColor {
-    var hsba:(h: CGFloat, s: CGFloat,b: CGFloat,a: CGFloat) {
-        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        self.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-        return (h: h, s: s, b: b, a: a)
-    }
-}
-
 extension UILabel {
     func makeRound() {
         self.clipsToBounds = true
@@ -210,34 +218,6 @@ extension UITextField {
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
-    }
-}
-
-extension HomeViewControllerDelegate {
-    
-    func createAlert(title: String, message: String) -> UIAlertController {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "No, thanks.", style: .cancel  , handler: nil))
-        alert.addAction(UIAlertAction(title: "Upgrade", style: .default, handler: { (action) in
-            self.rateApp(appId: "id1300442070") { success in
-                print("RateApp \(success)")
-            }
-        }))
-        
-        return alert
-    }
-    
-    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
-        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
-            completion(false)
-            return
-        }
-        guard #available(iOS 10, *) else {
-            completion(UIApplication.shared.openURL(url))
-            return
-        }
-        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
 }
 

@@ -14,6 +14,8 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     @IBOutlet weak var viewColor: UIView!
     @IBOutlet weak var textField: UITextField!
     
+//    var rgb: RGB?
+    
     let allowingCharacters:String = "aAbBcCdDeEfF0123456789"
     
     var currentThemeIndex = 0
@@ -49,11 +51,11 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         textField.layer.backgroundColor = UIColor.white.cgColor
         
         navigationController?.navigationBar.tintColor = UIColor.black
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        loadColor()
+        loadTheme()
+        showColor()
         if (freeVersion) {
             let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
             
@@ -82,12 +84,12 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
             return true
         }
         
-        if (textField.text?.characters.count == 6 || string.characters.count > 6) {
+        if (textField.text?.count == 6 || string.count > 6) {
             return false
         }
         
-        for character in string.characters {
-            if (!allowingCharacters.characters.contains(character)) {
+        for character in string {
+            if (!allowingCharacters.contains(character)) {
                 return false
             }
         }
@@ -103,17 +105,28 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     @IBAction func textFieldEditingChange(_ sender: UITextField) {
         sender.text = sender.text?.uppercased()
-        
-        let RGBValue = UtilitiesConverter.ConvertHexColorToRGB(hexString: sender.text!)
-
-        showColor(red: CGFloat(RGBValue[0])/255, green: CGFloat(RGBValue[1])/255, blue: CGFloat(RGBValue[2])/255)
+        UtilitiesConverter.rgb = nil
+        showColor()
     }
 
-    func showColor(red: CGFloat, green: CGFloat, blue: CGFloat) {
-        viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+    func showColor() {
+        let rgbValue = UtilitiesConverter.rgb ?? UtilitiesConverter.ConvertHexColorToRGB(hexString: textField.text!)
+        
+        if let rgb = UtilitiesConverter.rgb  {
+            let hex = UtilitiesConverter.ConvertRGBToHex(rgb: rgb)
+            textField.text = hex
+        }
+        
+        let red = CGFloat(rgbValue.red)
+        let green = CGFloat(rgbValue.green)
+        let blue = CGFloat(rgbValue.blue)
+        let alpha = CGFloat(1.0)
+        
+        viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        UtilitiesConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func loadColor() {
+    func loadTheme() {
         currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
         
         view.backgroundColor = mainBackgroundColor[currentThemeIndex]

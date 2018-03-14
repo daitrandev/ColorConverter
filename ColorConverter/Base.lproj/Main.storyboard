@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aR-BA-DC3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aR-BA-DC3">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,24 +30,23 @@
                                 <rect key="frame" x="35" y="393" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="9w9-cn-3pd" eventType="valueChanged" id="M8K-Xb-nP9"/>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="hzV-po-f3E"/>
+                                    <action selector="OnSlideEndEditing:" destination="9w9-cn-3pd" eventType="editingDidEnd" id="5FL-3t-siU"/>
+                                    <action selector="OnSlideValueChanged:" destination="9w9-cn-3pd" eventType="valueChanged" id="gGt-qq-HlY"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="jWt-ft-8Qx">
                                 <rect key="frame" x="35" y="355" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="9LV-Na-EZw"/>
-                                    <action selector="OnSlideAction:" destination="9w9-cn-3pd" eventType="valueChanged" id="C9V-tb-2od"/>
+                                    <action selector="OnSlideEndEditing:" destination="9w9-cn-3pd" eventType="editingDidEnd" id="0CC-Bm-Ejj"/>
+                                    <action selector="OnSlideValueChanged:" destination="9w9-cn-3pd" eventType="valueChanged" id="vNy-ea-scz"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="180" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="xFf-Nc-Brf">
                                 <rect key="frame" x="35" y="317" width="230.5" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="9w9-cn-3pd" eventType="valueChanged" id="pVh-0b-6vK"/>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="t6b-Pp-l6q"/>
+                                    <action selector="OnSlideValueChanged:" destination="9w9-cn-3pd" eventType="valueChanged" id="eia-17-NOp"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9z-HD-tE9">
@@ -183,22 +182,21 @@
                                 <rect key="frame" x="35" y="393" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="ogL-h2-IQC"/>
+                                    <action selector="OnSlideValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="FPl-8p-sav"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="b25-4a-DFG">
                                 <rect key="frame" x="35" y="355" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="d9V-vg-LVc"/>
+                                    <action selector="OnSlideValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="1jk-xb-rvR"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="N2c-G2-RDj">
                                 <rect key="frame" x="35" y="317" width="230.5" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Khv-HQ-bOy"/>
-                                    <action selector="OnSlideAction:" destination="9w9-cn-3pd" eventType="valueChanged" id="f1q-vD-zun"/>
+                                    <action selector="OnSlideValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="zHZ-re-iNd"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fB-IC-vVx">
@@ -486,8 +484,7 @@
                                 <rect key="frame" x="35" y="393" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="TDq-qP-03X"/>
-                                    <action selector="OnSlideAction:" destination="hEc-xY-kaJ" eventType="valueChanged" id="rvN-0V-lEz"/>
+                                    <action selector="OnSlideValueChanged:" destination="hEc-xY-kaJ" eventType="valueChanged" id="xOX-3b-ir1"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8B-vj-AXP">
@@ -512,25 +509,21 @@
                                 <rect key="frame" x="35" y="355" width="231" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="lPF-xR-Hq7"/>
-                                    <action selector="OnSlideAction:" destination="hEc-xY-kaJ" eventType="valueChanged" id="wgc-wT-5Bf"/>
+                                    <action selector="OnSlideValueChanged:" destination="hEc-xY-kaJ" eventType="valueChanged" id="uJL-5E-z7J"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="E0o-uR-gpM">
                                 <rect key="frame" x="36.5" y="317" width="229.5" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="4fU-bp-GvD"/>
-                                    <action selector="OnSlideAction:" destination="hEc-xY-kaJ" eventType="valueChanged" id="LdD-VL-lxe"/>
+                                    <action selector="OnSlideValueChanged:" destination="hEc-xY-kaJ" eventType="valueChanged" id="ZUS-1b-D2d"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="128" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="txl-r7-3BI">
                                 <rect key="frame" x="35" y="279" width="230.5" height="31"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="OnSlideAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="5GX-ZI-YOw"/>
-                                    <action selector="OnSlideAction:" destination="9w9-cn-3pd" eventType="valueChanged" id="XpX-R8-DTg"/>
-                                    <action selector="OnSlideAction:" destination="hEc-xY-kaJ" eventType="valueChanged" id="nWI-CD-DnM"/>
+                                    <action selector="OnSlideValueChanged:" destination="hEc-xY-kaJ" eventType="valueChanged" id="7dW-T4-k0D"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXU-hu-sEx">
@@ -860,6 +853,6 @@
         <image name="theme" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uqy-z0-jhd"/>
+        <segue reference="XWO-ea-j0x"/>
     </inferredMetricsTieBreakers>
 </document>

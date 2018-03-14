@@ -23,11 +23,13 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     @IBOutlet weak var sValueSlider: UISlider!
     @IBOutlet weak var vValueSlider: UISlider!
     
-    var valueLabelArray:[UILabel?] = []
+//    var rgb: RGB?
     
-    var labelArray: [UILabel?] = []
+    var valueLabelArray:[UILabel] = []
     
-    var sliderArray:[UISlider?] = []
+    var labelArray: [UILabel] = []
+    
+    var sliderArray:[UISlider] = []
     
     let defaultValueTextField:[Int] = [180, 50, 50]
     
@@ -64,14 +66,14 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
         valueLabelArray = [hValueLabel, sValueLabel, vValueLabel]
         labelArray = [hLabel, sLabel, vLabel]
         sliderArray = [hValueSlider, sValueSlider, vValueSlider]
-        
+    
         for i in 0..<sliderArray.count {
-            sliderArray[i]?.isEnabled = !freeVersion
+            sliderArray[i].isEnabled = !freeVersion
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadColor()
+        loadTheme()
         showColor()
         if (freeVersion) {
             let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
@@ -87,18 +89,22 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     
     @IBAction func OnRefreshAction(_ sender: Any) {
         for i in 0..<3 {
-            valueLabelArray[i]?.text = String(defaultValueTextField[i])
-            sliderArray[i]?.value = Float(defaultValueTextField[i])
+            valueLabelArray[i].text = String(defaultValueTextField[i])
+            sliderArray[i].value = Float(defaultValueTextField[i])
         }
         showColor()
     }
     
-    @IBAction func OnSlideAction(_ sender: UISlider) {
-        valueLabelArray[sender.tag]?.text = String(Int(sender.value))
-        
+    @IBAction func OnSlideValueChanged(_ sender: UISlider) {
+        valueLabelArray[sender.tag].text = String(Int(sender.value))
+        UtilitiesConverter.rgb = nil
         showColor()
     }
     
+    @IBAction func OnSlideEndEditing(_ sender: UISlider) {
+        print(sender.value)
+    }
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? UINavigationController, let homeVC = nav.topViewController as? HomeViewController {
             homeVC.delegate = self
@@ -106,12 +112,28 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     }
     
     func showColor() {
-        let color = UIColor.colorWithHSV(Hue: CGFloat(sliderArray[0]!.value), Saturation: CGFloat(sliderArray[1]!.value/100), Value: CGFloat(sliderArray[2]!.value/100))
+        let rgbValue = UtilitiesConverter.rgb ?? UtilitiesConverter.hsv2rgb((hue: CGFloat(sliderArray[0].value/360), saturation: CGFloat(sliderArray[1].value/100), brightness: CGFloat(sliderArray[2].value/100), alpha: CGFloat(1)))
         
-        viewColor?.backgroundColor = color
+        if let rgb = UtilitiesConverter.rgb  {
+            let hsvValue = UtilitiesConverter.rgb2hsv(rgb)
+            sliderArray[0].value = Float(hsvValue.hue)*360
+            sliderArray[1].value = Float(hsvValue.saturation)*100
+            sliderArray[2].value = Float(hsvValue.brightness)*100
+            for i in 0..<sliderArray.count {
+                valueLabelArray[i].text = String(Int(sliderArray[i].value))
+            }
+        }
+        
+        let red = rgbValue.red
+        let green = rgbValue.green
+        let blue = rgbValue.blue
+        let alpha = CGFloat(1.0)
+        
+        viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        UtilitiesConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func loadColor() {
+    func loadTheme() {
         currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
         
         view.backgroundColor = mainBackgroundColor[currentThemeIndex]
@@ -125,9 +147,9 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
         
         for i in 0..<valueLabelArray.count {
-            valueLabelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            labelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            sliderArray[i]?.tintColor = mainLabelColor[currentThemeIndex]
+            valueLabelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            labelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
         if (currentThemeIndex == 0) {

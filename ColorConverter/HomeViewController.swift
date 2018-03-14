@@ -10,10 +10,6 @@ import UIKit
 import MessageUI
 import GoogleMobileAds
 
-protocol HomeViewControllerDelegate:class {
-    func loadColor()
-}
-
 class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var themeButton: UIButton!
@@ -70,7 +66,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     }
 
     @IBAction func OnDoneAction(_ sender: Any) {
-        delegate?.loadColor()
+        delegate?.loadTheme()
         
         dismiss(animated: true, completion: nil)
     }

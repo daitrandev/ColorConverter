@@ -10,7 +10,7 @@
 
 import UIKit
 
-public extension UIColor {
+extension UIColor {
     
     //MARK: - Public method
     
@@ -23,8 +23,7 @@ public extension UIColor {
     
     - returns: A UIColor from the given HSV values.
     */
-    @objc(hsv_colorWithHue:saturation:value:)
-    public class func colorWithHSV(Hue hue: CGFloat, Saturation saturation: CGFloat, Value value: CGFloat) -> UIColor? {
+    public class func colorWithHSV(Hue hue: CGFloat, Saturation saturation: CGFloat, Value value: CGFloat) -> RGB? {
         
         var r: CGFloat = 0.0
         var g: CGFloat = 0.0
@@ -75,6 +74,6 @@ public extension UIColor {
         g = g + m
         b = b + m
         
-        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        return (red: r, green: g, blue: b, alpha: CGFloat(1.0))
     }
 }

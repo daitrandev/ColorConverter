@@ -26,12 +26,13 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     @IBOutlet weak var yValueSlider: UISlider!
     @IBOutlet weak var kValueSlider: UISlider!
     
+    var rgb: RGB?
     
-    var valueLabelArray:[UILabel?] = []
+    var valueLabelArray:[UILabel] = []
     
-    var labelArray: [UILabel?] = []
+    var labelArray: [UILabel] = []
     
-    var sliderArray:[UISlider?] = []
+    var sliderArray:[UISlider] = []
     
     let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
     
@@ -67,14 +68,14 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         valueLabelArray = [cValueLabel, mValueLabel, yValueLabel, kValueLabel]
         labelArray = [cLabel, mLabel, yLabel, kLabel]
         sliderArray = [cValueSlider, mValueSlider, yValueSlider, kValueSlider]
-        
+         
         for i in 0..<sliderArray.count {
-            sliderArray[i]?.isEnabled = !freeVersion
+            sliderArray[i].isEnabled = !freeVersion
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadColor()
+        loadTheme()
         showColor()
         
         if (freeVersion) {
@@ -92,16 +93,16 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     
     @IBAction func OnRefreshAction(_ sender: Any) {
         for i in 0..<4 {
-            valueLabelArray[i]?.text = "128"
-            sliderArray[i]?.value = 128
+            valueLabelArray[i].text = "128"
+            sliderArray[i].value = 128
         }
         
         showColor()
     }
     
-    @IBAction func OnSlideAction(_ sender: UISlider) {
-        valueLabelArray[sender.tag]?.text = String(Int(sender.value))
-        
+    @IBAction func OnSlideValueChanged(_ sender: UISlider) {
+        valueLabelArray[sender.tag].text = String(Int(sender.value))
+        UtilitiesConverter.rgb = nil
         showColor()
     }
     
@@ -124,12 +125,30 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     }
     
     func showColor() {
-        let rgb = CMYKtoRGB(c: CGFloat(Int(sliderArray[0]!.value))/255, m: CGFloat(Int(sliderArray[1]!.value))/255, y: CGFloat(Int(sliderArray[2]!.value))/255, k: CGFloat(Int(sliderArray[3]!.value))/255)
+        let rgbValue = UtilitiesConverter.rgb ?? UtilitiesConverter.CMYKtoRGB(c: CGFloat(Int(sliderArray[0].value))/255, m: CGFloat(Int(sliderArray[1].value))/255, y: CGFloat(Int(sliderArray[2].value))/255, k: CGFloat(Int(sliderArray[3].value))/255)
         
-        viewColor?.backgroundColor = UIColor(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: 1)
+        if let rgb = UtilitiesConverter.rgb  {
+            let cmyk = UtilitiesConverter.RGBtoCMYK(r: rgb.red, g: rgb.green, b: rgb.blue)
+            sliderArray[0].value = Float(cmyk.c)*255
+            sliderArray[1].value = Float(cmyk.m)*255
+            sliderArray[2].value = Float(cmyk.y)*255
+            sliderArray[3].value = Float(cmyk.k)*255
+            for i in 0..<sliderArray.count {
+                valueLabelArray[i].text = String(Int(sliderArray[i].value))
+            }
+        }
+        
+        let red = rgbValue.red
+        let green = rgbValue.green
+        let blue = rgbValue.blue
+        let alpha = 1.0
+        viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: CGFloat(alpha))
+
+        UtilitiesConverter.rgb = (red: rgbValue.red, green: rgbValue.green, blue: rgbValue.blue, alpha: CGFloat(1.0))
     }
+
     
-    func loadColor() {
+    func loadTheme() {
         currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
         
         view.backgroundColor = mainBackgroundColor[currentThemeIndex]
@@ -143,9 +162,9 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
         
         for i in 0..<valueLabelArray.count {
-            valueLabelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            labelArray[i]?.textColor = mainLabelColor[currentThemeIndex]
-            sliderArray[i]?.tintColor = mainLabelColor[currentThemeIndex]
+            valueLabelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            labelArray[i].textColor = mainLabelColor[currentThemeIndex]
+            sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
         if (currentThemeIndex == 0) {
@@ -153,13 +172,6 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         } else {
             UIApplication.shared.statusBarStyle = .lightContent
         }
-    }
-    
-    func CMYKtoRGB(c : CGFloat, m : CGFloat, y : CGFloat, k : CGFloat) -> (r : CGFloat, g : CGFloat, b : CGFloat) {
-        let r = (1 - c) * (1 - k)
-        let g = (1 - m) * (1 - k)
-        let b = (1 - y) * (1 - k)
-        return (r, g, b)
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
