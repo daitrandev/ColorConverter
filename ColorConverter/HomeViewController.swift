@@ -28,13 +28,17 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     weak var delegate: HomeViewControllerDelegate?
     
-    var currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
+    var currentThemeIndex = 0
     
     var labelArray:[UILabel?] = []
     
     var bannerView: GADBannerView!
     
     var freeVersion: Bool = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentThemeIndex == 0 ? .default : .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     @IBAction func OnThemeAction(_ sender: Any) {
         currentThemeIndex = 1 - currentThemeIndex
         UserDefaults.standard.setValue(currentThemeIndex, forKey: "ThemeIndex")
+        print(UserDefaults.standard.integer(forKey: "ThemeIndex"))
         loadColor()
     }
 
@@ -121,6 +126,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     }
  
     func loadColor() {
+        currentThemeIndex = UserDefaults.standard.integer(forKey: "ThemeIndex")
         view.backgroundColor = mainBackgroundColor[currentThemeIndex]
         
         if (currentThemeIndex == 0) {
@@ -128,16 +134,14 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
             feedbackButton.setImage(#imageLiteral(resourceName: "feedback"), for: .normal)
             rateButton.setImage(#imageLiteral(resourceName: "rate"), for: .normal)
             shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
-            
-            UIApplication.shared.statusBarStyle = .default
         } else {
             themeButton.setImage(#imageLiteral(resourceName: "theme-orange"), for: .normal)
             feedbackButton.setImage(#imageLiteral(resourceName: "feedback-orange"), for: .normal)
             rateButton.setImage(#imageLiteral(resourceName: "rate-orange"), for: .normal)
             shareButton.setImage(#imageLiteral(resourceName: "share-orange"), for: .normal)
-            
-            UIApplication.shared.statusBarStyle = .lightContent
         }
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         for i in 0..<labelArray.count {
             labelArray[i]?.textColor = mainBackgroundColor[1 - currentThemeIndex]

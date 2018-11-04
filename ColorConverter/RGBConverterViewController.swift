@@ -45,6 +45,10 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     var freeVersion: Bool = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentThemeIndex == 0 ? .default : .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +74,8 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         } else {
             UserDefaults.standard.set(1, forKey: "ThemeIndex")
         }
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         valueLabelArray = [rValueLabel, gValueLabel, bValueLabel]
         sliderArray = [rValueSlider, gValueSlider, bValueSlider]
@@ -146,11 +152,7 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
             sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
-        if (currentThemeIndex == 0) {
-            UIApplication.shared.statusBarStyle = .default
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

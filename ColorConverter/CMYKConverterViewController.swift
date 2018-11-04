@@ -44,6 +44,10 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     
     var freeVersion: Bool = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentThemeIndex == 0 ? .default : .lightContent
+    }
+    
     @IBOutlet weak var viewColor: UIView!
     
     override func viewDidLoad() {
@@ -167,11 +171,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
             sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
-        if (currentThemeIndex == 0) {
-            UIApplication.shared.statusBarStyle = .default
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

@@ -23,8 +23,6 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     @IBOutlet weak var sValueSlider: UISlider!
     @IBOutlet weak var vValueSlider: UISlider!
     
-//    var rgb: RGB?
-    
     var valueLabelArray:[UILabel] = []
     
     var labelArray: [UILabel] = []
@@ -42,6 +40,10 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
     var bannerView: GADBannerView!
     
     var freeVersion: Bool = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentThemeIndex == 0 ? .default : .lightContent
+    }
     
     @IBOutlet weak var viewColor: UIView!
     
@@ -152,11 +154,7 @@ class HSVConverterViewController: UIViewController, HomeViewControllerDelegate, 
             sliderArray[i].tintColor = mainLabelColor[currentThemeIndex]
         }
         
-        if (currentThemeIndex == 0) {
-            UIApplication.shared.statusBarStyle = .default
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

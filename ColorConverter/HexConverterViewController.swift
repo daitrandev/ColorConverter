@@ -13,9 +13,7 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
 
     @IBOutlet weak var viewColor: UIView!
     @IBOutlet weak var textField: UITextField!
-    
-//    var rgb: RGB?
-    
+        
     let allowingCharacters:String = "aAbBcCdDeEfF0123456789"
     
     var currentThemeIndex = 0
@@ -27,6 +25,10 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     var bannerView: GADBannerView!
     
     var freeVersion: Bool = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentThemeIndex == 0 ? .default : .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,11 +141,7 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         tabBarController?.tabBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
         
-        if (currentThemeIndex == 0) {
-            UIApplication.shared.statusBarStyle = .default
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {

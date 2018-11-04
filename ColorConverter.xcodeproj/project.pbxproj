@@ -19,9 +19,9 @@
 		23C274051F9AF870009EC53B /* CMYKConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C274041F9AF870009EC53B /* CMYKConverterViewController.swift */; };
 		23C274071F9AFC54009EC53B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C274061F9AFC54009EC53B /* HomeViewController.swift */; };
 		23CE54EF1F9B355300446CCB /* UtilitiesConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */; };
-		23D3EC4F1FA0734D0087AF46 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */; };
 		23DA0F8520565FCF0077761A /* Protocols & Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DA0F8420565FCF0077761A /* Protocols & Extensions.swift */; };
 		23DA0F8720568B5A0077761A /* NotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DA0F8620568B5A0077761A /* NotificationKeys.swift */; };
+		23EE5DD6218DFD9F0072A859 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EE5DD5218DFD9F0072A859 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +39,9 @@
 		23C274041F9AF870009EC53B /* CMYKConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMYKConverterViewController.swift; sourceTree = "<group>"; };
 		23C274061F9AFC54009EC53B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesConverter.swift; sourceTree = "<group>"; };
-		23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		23DA0F8420565FCF0077761A /* Protocols & Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocols & Extensions.swift"; sourceTree = "<group>"; };
 		23DA0F8620568B5A0077761A /* NotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKeys.swift; sourceTree = "<group>"; };
+		23EE5DD5218DFD9F0072A859 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23D3EC4F1FA0734D0087AF46 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +60,6 @@
 			children = (
 				23C273ED1F9AEB11009EC53B /* ColorConverter */,
 				23C273EC1F9AEB11009EC53B /* Products */,
-				23D3EC4E1FA0734D0087AF46 /* GoogleMobileAds.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +77,7 @@
 				23C273EE1F9AEB11009EC53B /* AppDelegate.swift */,
 				23380A741F9C412A009DFBD6 /* UIColor+HSV.swift */,
 				23C274021F9AEFA2009EC53B /* TableViewCell.swift */,
+				23EE5DD5218DFD9F0072A859 /* Extensions.swift */,
 				23CE54EE1F9B355300446CCB /* UtilitiesConverter.swift */,
 				23DA0F8620568B5A0077761A /* NotificationKeys.swift */,
 				23C274061F9AFC54009EC53B /* HomeViewController.swift */,
@@ -122,7 +121,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = DaiTranDev;
 				TargetAttributes = {
 					23C273EA1F9AEB11009EC53B = {
@@ -176,6 +175,7 @@
 				23C274031F9AEFA2009EC53B /* TableViewCell.swift in Sources */,
 				23C274051F9AF870009EC53B /* CMYKConverterViewController.swift in Sources */,
 				23380A751F9C412A009DFBD6 /* UIColor+HSV.swift in Sources */,
+				23EE5DD6218DFD9F0072A859 /* Extensions.swift in Sources */,
 				2325E1361F9CEF0100154FEB /* HexConverterViewController.swift in Sources */,
 				23C274011F9AEE1A009EC53B /* RGBConverterViewController.swift in Sources */,
 				23C273EF1F9AEB11009EC53B /* AppDelegate.swift in Sources */,
@@ -219,6 +219,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -226,6 +227,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -276,6 +278,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -283,6 +286,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
