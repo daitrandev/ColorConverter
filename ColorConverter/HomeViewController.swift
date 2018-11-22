@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     var bannerView: GADBannerView!
     
-    var freeVersion: Bool = false
+    var freeVersion: Bool = true
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentThemeIndex == 0 ? .default : .lightContent
