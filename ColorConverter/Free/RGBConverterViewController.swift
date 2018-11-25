@@ -42,9 +42,7 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     var bannerView: GADBannerView!
     
     var interstitial: GADInterstitial?
-    
-    var freeVersion: Bool = true
-    
+        
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentThemeIndex == 0 ? .default : .lightContent
     }
@@ -52,23 +50,20 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (freeVersion) {
-            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-            addBannerViewToView(bannerView)
-            
-            bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-            bannerView.rootViewController = self
-            bannerView.load(GADRequest())
-            bannerView.delegate = self
-            
-            interstitial = createAndLoadInterstitial()
-        }
-
-
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+        interstitial = createAndLoadInterstitial()
+        
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
         viewColor.layer.masksToBounds = true
-                
+        
         if let value = UserDefaults.standard.object(forKey: "ThemeIndex") as? Int {
             currentThemeIndex = value
         } else {
@@ -203,6 +198,10 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
         ad.present(fromRootViewController: self)
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        self.setNeedsStatusBarAppearanceUpdate()
     }
 }
 

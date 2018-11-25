@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
-class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeViewControllerDelegate, GADBannerViewDelegate {
+class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeViewControllerDelegate {
     
     @IBOutlet weak var cValueLabel: UILabel!
     @IBOutlet weak var mValueLabel: UILabel!
@@ -39,11 +38,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
     
     var currentThemeIndex: Int = 0
-    
-    var bannerView: GADBannerView!
-    
-    var freeVersion: Bool = true
-    
+            
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentThemeIndex == 0 ? .default : .lightContent
     }
@@ -52,16 +47,6 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (freeVersion) {
-            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-            addBannerViewToView(bannerView)
-            
-            bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-            bannerView.rootViewController = self
-            bannerView.load(GADRequest())
-            bannerView.delegate = self
-        }
 
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
@@ -72,22 +57,11 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         valueLabelArray = [cValueLabel, mValueLabel, yValueLabel, kValueLabel]
         labelArray = [cLabel, mLabel, yLabel, kLabel]
         sliderArray = [cValueSlider, mValueSlider, yValueSlider, kValueSlider]
-         
-        for i in 0..<sliderArray.count {
-            sliderArray[i].isEnabled = !freeVersion
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadTheme()
         showColor()
-        
-        if (freeVersion) {
-            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
-            
-            present(alert, animated: true, completion: nil)
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -172,35 +146,5 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, HomeVi
         }
         
         setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .top,
-                                relatedBy: .equal,
-                                toItem: topLayoutGuide,
-                                attribute: .bottom,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
-    }
-    
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        addBannerViewToView(bannerView)
-        
-        bannerView.alpha = 0
-        UIView.animate(withDuration: 1, animations: {
-            bannerView.alpha = 1
-        })
     }
 }

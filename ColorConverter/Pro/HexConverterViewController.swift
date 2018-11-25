@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
-class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeViewControllerDelegate, GADBannerViewDelegate {
+class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeViewControllerDelegate {
 
     @IBOutlet weak var viewColor: UIView!
     @IBOutlet weak var textField: UITextField!
@@ -21,29 +20,13 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
     
     let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
-
-    var bannerView: GADBannerView!
-    
-    var freeVersion: Bool = true
-    
+        
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentThemeIndex == 0 ? .default : .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (freeVersion) {
-            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-            addBannerViewToView(bannerView)
-            
-            bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-            bannerView.rootViewController = self
-            bannerView.load(GADRequest())
-            bannerView.delegate = self
-            
-            textField.isEnabled = false
-            textField.backgroundColor = UIColor.gray
-        }
         
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
@@ -58,11 +41,6 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     override func viewWillAppear(_ animated: Bool) {
         loadTheme()
         showColor()
-        if (freeVersion) {
-            let alert = createAlert(title: "Color Calculator++", message: "Upgrade to Color Calculator++ then you can use all functions without ads")
-            
-            present(alert, animated: true, completion: nil)
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -142,35 +120,5 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         tabBarController?.tabBar.tintColor = mainLabelColor[currentThemeIndex]
         
         setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .top,
-                                relatedBy: .equal,
-                                toItem: topLayoutGuide,
-                                attribute: .bottom,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
-    }
-    
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        addBannerViewToView(bannerView)
-        
-        bannerView.alpha = 0
-        UIView.animate(withDuration: 1, animations: {
-            bannerView.alpha = 1
-        })
     }
 }

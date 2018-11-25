@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
+               BlueprintIdentifier = "235F2B2021AA4B64002344B8"
                BuildableName = "ColorConverter.app"
                BlueprintName = "ColorConverter"
                ReferencedContainer = "container:ColorConverter.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
+            BlueprintIdentifier = "235F2B2021AA4B64002344B8"
             BuildableName = "ColorConverter.app"
             BlueprintName = "ColorConverter"
             ReferencedContainer = "container:ColorConverter.xcodeproj">
@@ -42,7 +42,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
+            BlueprintIdentifier = "235F2B2021AA4B64002344B8"
             BuildableName = "ColorConverter.app"
             BlueprintName = "ColorConverter"
             ReferencedContainer = "container:ColorConverter.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "23C273EA1F9AEB11009EC53B"
+            BlueprintIdentifier = "235F2B2021AA4B64002344B8"
             BuildableName = "ColorConverter.app"
             BlueprintName = "ColorConverter"
             ReferencedContainer = "container:ColorConverter.xcodeproj">

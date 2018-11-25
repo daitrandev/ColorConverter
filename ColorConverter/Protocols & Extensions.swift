@@ -14,11 +14,14 @@ protocol HomeViewControllerDelegate:class {
 
 extension HomeViewControllerDelegate {
     
-    func createAlert(title: String, message: String) -> UIAlertController {
+    func createAlert(title: String, message: String, completion: @escaping () -> ()) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "No, thanks.", style: .cancel  , handler: nil))
+        alert.addAction(UIAlertAction(title: "No, thanks.", style: .cancel  , handler: { (action) in
+            completion()
+        }))
         alert.addAction(UIAlertAction(title: "Upgrade", style: .default, handler: { (action) in
+            completion()
             self.rateApp(appId: "id1300442070") { success in
                 print("RateApp \(success)")
             }

@@ -98,7 +98,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     }
     
     @IBAction func OnRateAction(_ sender: Any) {
-        let appId:String = freeVersion ? "id1300478165" : "id1300442070"
+        let appId:String = "id1300478165"
         
         rateApp(appId: appId) { success in
             print("RateApp \(success)")
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     }
     
     @IBAction func OnShareAction(_ sender: Any) {
-        let appId:String = freeVersion ? "id1300478165" : "id1300442070"
+        let appId:String = "id1300478165"
         let message: String = "https://itunes.apple.com/app/\(appId)"
         let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
         vc.popoverPresentationController?.sourceView = self.view
