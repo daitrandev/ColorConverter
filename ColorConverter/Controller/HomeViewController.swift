@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     var bannerView: GADBannerView!
     
-    var freeVersion: Bool = true
+    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return currentThemeIndex == 0 ? .default : .lightContent
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (freeVersion) {
+        if isFreeVersion {
             bannerView = GADBannerView(adSize: kGADAdSizeBanner)
             addBannerViewToView(bannerView)
             
@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, MFMailComposeViewControllerDelegate,
         navigationController?.navigationBar.tintColor = mainTintColorNavigationBar[currentThemeIndex]
         navigationController?.navigationBar.barTintColor = mainBackgroundColor[currentThemeIndex]
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: mainBackgroundColor[1 - currentThemeIndex]]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: mainBackgroundColor[1 - currentThemeIndex]]
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
