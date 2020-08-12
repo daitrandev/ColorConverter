@@ -180,6 +180,9 @@ extension HexConverterViewController: GADBannerViewDelegate {
 
 extension HexConverterViewController: PurchasingPopupViewControllerDelegate {
     func removeAds() {
+        textField.isEnabled = true
+        textField.backgroundColor = .white
+        
         bannerView?.removeFromSuperview()
         navigationItem.leftBarButtonItem = nil
     }

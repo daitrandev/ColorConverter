@@ -185,6 +185,10 @@ class HSVConverterViewController: UIViewController, GADBannerViewDelegate {
 
 extension HSVConverterViewController: PurchasingPopupViewControllerDelegate {
     func removeAds() {
+        for index in 0..<sliderArray.count {
+            sliderArray[index].isEnabled = true
+        }
+        
         bannerView?.removeFromSuperview()
         navigationItem.leftBarButtonItem = nil
     }
