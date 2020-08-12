@@ -11,7 +11,7 @@ import SideMenu
 import MessageUI
 import GoogleMobileAds
 
-class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeViewControllerDelegate, GADBannerViewDelegate, GADInterstitialDelegate {
+class RGBConverterViewController: UIViewController, UITextFieldDelegate, GADBannerViewDelegate, GADInterstitialDelegate {
     
     @IBOutlet weak var rValueLabel: UILabel!
     @IBOutlet weak var gValueLabel: UILabel!
@@ -38,67 +38,38 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
     let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
     
     let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
-    
-    var isLightTheme: Bool = UserDefaults.standard.bool(forKey: isLightThemeKey)
-    
+        
     var bannerView: GADBannerView!
     
     var interstitial: GADInterstitial?
     
-    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
-        
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return isLightTheme ? .default : .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if isFreeVersion {
-            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-            addBannerViewToView(bannerView)
-            
-            bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-            bannerView.rootViewController = self
-            bannerView.load(GADRequest())
-            bannerView.delegate = self
-            
-            interstitial = createAndLoadInterstitial()
-        }
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        
+        bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+        interstitial = createAndLoadInterstitial()
         
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
         viewColor.layer.masksToBounds = true
         
-        if let value = UserDefaults.standard.object(forKey: isLightThemeKey) as? Bool {
-            isLightTheme = value
-        } else {
-            UserDefaults.standard.set(true, forKey: isLightThemeKey)
-        }
-        
         setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadTheme()
         showColor()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func didTapHome(_ sender: Any) {
-        let menuViewController = MenuViewController()
-        menuViewController.delegate = self
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: menuViewController)
-        
-        SideMenuManager.default.menuLeftNavigationController?.navigationBar.backgroundColor = .green
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     @IBAction func OnRefreshAction(_ sender: Any) {
@@ -134,28 +105,6 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         
         viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         UtilitiesConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    func loadTheme() {
-        isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-        
-        view.backgroundColor = isLightTheme ? .white : .black
-        
-        navigationController?.navigationBar.barTintColor = isLightTheme ? .white : .black
-        navigationController?.navigationBar.tintColor = isLightTheme ? .black : .orange
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
-        
-        tabBarController?.tabBar.barTintColor = isLightTheme ? .white : .black
-        tabBarController?.tabBar.tintColor = isLightTheme ? .black : .orange
-        
-        for i in 0..<valueLabelArray.count {
-            valueLabelArray[i].textColor = isLightTheme ? .black : .orange
-            labelArray[i].textColor = isLightTheme ? .black : .orange
-            sliderArray[i].tintColor = isLightTheme ? .black : .orange
-        }
-        
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
@@ -197,7 +146,6 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         
         let request = GADRequest()
         // Remove the following line before you upload the app
-        request.testDevices = [ kGADSimulatorID ]
         interstitial.load(request)
         interstitial.delegate = self
         
@@ -212,52 +160,3 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, HomeVie
         self.setNeedsStatusBarAppearanceUpdate()
     }
 }
-
-extension RGBConverterViewController: MenuViewControllerDelegate {
-    func presentMailComposeViewController() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
-    
-    func presentRatingAction() {
-        let appId:String = isFreeVersion ? "id1300478165" : "id1300442070"
-        
-        rateApp(appId: appId) { success in
-            print("RateApp \(success)")
-        }
-    }
-    
-    func presentShareAction() {
-        let appId:String = isFreeVersion ? "id1300478165" : "id1300442070"
-        let message: String = "https://itunes.apple.com/app/\(appId)"
-        let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
-        vc.popoverPresentationController?.sourceView = self.view
-        present(vc, animated: true)
-    }
-    
-    func changeTheme() {
-        isLightTheme = !isLightTheme
-        UserDefaults.standard.set(isLightTheme, forKey: isLightThemeKey)
-        loadTheme()
-    }
-}
-
-extension RGBConverterViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self
-        
-        mailComposerVC.setToRecipients(["universappteam@gmail.com"])
-        mailComposerVC.setSubject("[Color-Calculator Feedback]")
-        
-        return mailComposerVC
-    }
-}
-
-

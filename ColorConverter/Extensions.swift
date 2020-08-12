@@ -9,7 +9,15 @@
 import UIKit
 
 extension UIView {
-    func constraintTo(top: NSLayoutYAxisAnchor?, bottom: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, right: NSLayoutXAxisAnchor?, topConstant: CGFloat, bottomConstant: CGFloat, leftConstant: CGFloat, rightConstant: CGFloat) {
+    func constraintTo(
+        top: NSLayoutYAxisAnchor?,
+        bottom: NSLayoutYAxisAnchor?,
+        left: NSLayoutXAxisAnchor?,
+        right: NSLayoutXAxisAnchor?,
+        topConstant: CGFloat = 0,
+        bottomConstant: CGFloat = 0,
+        leftConstant: CGFloat = 0,
+        rightConstant: CGFloat = 0) {
         
         if let top = top {
             topAnchor.constraint(equalTo: top, constant: topConstant).isActive = true
@@ -43,18 +51,5 @@ extension UITextField {
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 1
-    }
-}
-
-extension UINavigationController {
-    open override var childForStatusBarStyle: UIViewController? {
-        return topViewController
-    }
-}
-
-extension UIImage {
-    convenience init?(menuSection: MenuSection, theme: Theme) {
-        let menuIconName = menuSection.rawValue + "-" + theme.rawValue
-        self.init(named: menuIconName)
     }
 }
