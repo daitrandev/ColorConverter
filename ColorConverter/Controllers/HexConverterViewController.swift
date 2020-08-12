@@ -15,10 +15,6 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
         
     let allowingCharacters:String = "aAbBcCdDeEfF0123456789"
-        
-    let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
-    
-    let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
 
     var bannerView: GADBannerView!
     
@@ -57,6 +53,10 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
         textField.layer.backgroundColor = UIColor.white.cgColor
         
         setupColor()
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont(name: "Roboto-Medium", size: 18)!
+        ]
     }
 
     override func viewWillAppear(_ animated: Bool) {

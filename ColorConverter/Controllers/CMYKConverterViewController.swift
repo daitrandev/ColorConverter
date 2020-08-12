@@ -36,10 +36,6 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
     
     lazy var sliderArray:[UISlider] = [cValueSlider, mValueSlider, yValueSlider, kValueSlider]
     
-    let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
-    
-    let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
-    
     var bannerView: GADBannerView!
         
     var isPurchased: Bool {
@@ -75,6 +71,10 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
         viewColor.layer.masksToBounds = true
         
         setupColor()
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont(name: "Roboto-Medium", size: 18)!
+        ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,11 +92,19 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
             tabBarController?.tabBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            
+            sliderArray.forEach {
+                $0.tintColor = traitCollection.userInterfaceStyle.themeColor
+            }
         } else {
             tabBarController?.tabBar.tintColor = .black
             tabBarController?.tabBar.barTintColor = .white
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = .black
+            
+            sliderArray.forEach {
+                $0.tintColor = .black
+            }
         }
     }
     

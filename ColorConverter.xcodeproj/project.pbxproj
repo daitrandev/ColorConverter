@@ -28,6 +28,11 @@
 		F8AFA9EF24E3E7C900CF992B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA9EE24E3E7C900CF992B /* UIView+Ext.swift */; };
 		F8AFA9F124E3E7E600CF992B /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA9F024E3E7E600CF992B /* UILabel+Ext.swift */; };
 		F8AFA9F324E3E80400CF992B /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA9F224E3E80400CF992B /* UITextField+Ext.swift */; };
+		F8AFA9FA24E3E90E00CF992B /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8AFA9F624E3E90E00CF992B /* Roboto-Medium.ttf */; };
+		F8AFA9FB24E3E90E00CF992B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8AFA9F724E3E90E00CF992B /* Roboto-Light.ttf */; };
+		F8AFA9FC24E3E90E00CF992B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8AFA9F824E3E90E00CF992B /* Roboto-Regular.ttf */; };
+		F8AFA9FD24E3E90E00CF992B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8AFA9F924E3E90E00CF992B /* Roboto-Bold.ttf */; };
+		F8AFA9FF24E3E91B00CF992B /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFA9FE24E3E91B00CF992B /* UIFont+Ext.swift */; };
 		FA01E69322214F8B00457C7B /* HexConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2325E1351F9CEF0100154FEB /* HexConverterViewController.swift */; };
 		FA01E69422214F8B00457C7B /* CMYKConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C274041F9AF870009EC53B /* CMYKConverterViewController.swift */; };
 		FA01E69522214F8B00457C7B /* HSVConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0D79C1F9BA0E700BF29AC /* HSVConverterViewController.swift */; };
@@ -62,6 +67,11 @@
 		F8AFA9EE24E3E7C900CF992B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		F8AFA9F024E3E7E600CF992B /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		F8AFA9F224E3E80400CF992B /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		F8AFA9F624E3E90E00CF992B /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		F8AFA9F724E3E90E00CF992B /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		F8AFA9F824E3E90E00CF992B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		F8AFA9F924E3E90E00CF992B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		F8AFA9FE24E3E91B00CF992B /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +157,7 @@
 				F8AFA9F024E3E7E600CF992B /* UILabel+Ext.swift */,
 				F8AFA9F224E3E80400CF992B /* UITextField+Ext.swift */,
 				23380A741F9C412A009DFBD6 /* UIColor+HSV.swift */,
+				F8AFA9FE24E3E91B00CF992B /* UIFont+Ext.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -172,9 +183,21 @@
 		F8AFA9F424E3E88700CF992B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F8AFA9F524E3E90E00CF992B /* Fonts */,
 				23C273F51F9AEB11009EC53B /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F8AFA9F524E3E90E00CF992B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F8AFA9F624E3E90E00CF992B /* Roboto-Medium.ttf */,
+				F8AFA9F724E3E90E00CF992B /* Roboto-Light.ttf */,
+				F8AFA9F824E3E90E00CF992B /* Roboto-Regular.ttf */,
+				F8AFA9F924E3E90E00CF992B /* Roboto-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		FA12CD1022218B59002614E5 /* Controllers */ = {
@@ -256,9 +279,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8AFA9FA24E3E90E00CF992B /* Roboto-Medium.ttf in Resources */,
+				F8AFA9FC24E3E90E00CF992B /* Roboto-Regular.ttf in Resources */,
 				235F2B3621AA4B64002344B8 /* LaunchScreen.storyboard in Resources */,
+				F8AFA9FB24E3E90E00CF992B /* Roboto-Light.ttf in Resources */,
 				235F2B3721AA4B64002344B8 /* Assets.xcassets in Resources */,
 				235F2B3821AA4B64002344B8 /* Main.storyboard in Resources */,
+				F8AFA9FD24E3E90E00CF992B /* Roboto-Bold.ttf in Resources */,
 				F8AFA9DC24E3E07C00CF992B /* PurchasingPopupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8AFA9FF24E3E91B00CF992B /* UIFont+Ext.swift in Sources */,
 				F8AFA9E224E3E10B00CF992B /* GlobalKeychain.swift in Sources */,
 				FA01E69822214F8B00457C7B /* AppDelegate.swift in Sources */,
 				FA01E69722214F8B00457C7B /* RGBConverterViewController.swift in Sources */,
@@ -356,6 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.ColorCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};

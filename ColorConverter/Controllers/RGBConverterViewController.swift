@@ -32,10 +32,6 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, GADBann
     lazy var labelArray:[UILabel] =  [rLabel, gLabel, bLabel]
     
     lazy var sliderArray:[UISlider] = [rValueSlider, gValueSlider, bValueSlider]
-    
-    let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
-    
-    let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
         
     var bannerView: GADBannerView!
     
@@ -72,6 +68,10 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, GADBann
         viewColor.layer.masksToBounds = true
         
         setupColor()
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont(name: "Roboto-Medium", size: 18)!
+        ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,11 +89,19 @@ class RGBConverterViewController: UIViewController, UITextFieldDelegate, GADBann
             tabBarController?.tabBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            
+            sliderArray.forEach {
+                $0.tintColor = traitCollection.userInterfaceStyle.themeColor
+            }
         } else {
             tabBarController?.tabBar.tintColor = .black
             tabBarController?.tabBar.barTintColor = .white
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = .black
+            
+            sliderArray.forEach {
+                $0.tintColor = .black
+            }
         }
     }
     

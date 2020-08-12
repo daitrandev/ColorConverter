@@ -32,10 +32,6 @@ class HSVConverterViewController: UIViewController, GADBannerViewDelegate {
     lazy var sliderArray:[UISlider] = [hValueSlider, sValueSlider, vValueSlider]
     
     let defaultValueTextField:[Int] = [180, 50, 50]
-    
-    let mainBackgroundColor:[UIColor] = [UIColor.white, UIColor.black]
-    
-    let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
         
     var bannerView: GADBannerView!
     
@@ -72,6 +68,10 @@ class HSVConverterViewController: UIViewController, GADBannerViewDelegate {
         viewColor.layer.masksToBounds = true
         
         setupColor()
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont(name: "Roboto-Medium", size: 18)!
+        ]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,11 +88,19 @@ class HSVConverterViewController: UIViewController, GADBannerViewDelegate {
             tabBarController?.tabBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.barTintColor = .secondarySystemBackground
             navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            
+            sliderArray.forEach {
+                $0.tintColor = traitCollection.userInterfaceStyle.themeColor
+            }
         } else {
             tabBarController?.tabBar.tintColor = .black
             tabBarController?.tabBar.barTintColor = .white
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = .black
+            
+            sliderArray.forEach {
+                $0.tintColor = .black
+            }
         }
     }
     
