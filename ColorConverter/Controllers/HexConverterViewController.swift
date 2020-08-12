@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SideMenu
-import MessageUI
 import GoogleMobileAds
 
 class HexConverterViewController: UIViewController, UITextFieldDelegate {
@@ -24,19 +22,32 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
 
     var bannerView: GADBannerView!
     
+    var isPurchased: Bool {
+        GlobalKeychain.getBool(for: KeychainKey.isPurchased) ?? false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        addBannerViewToView(bannerView)
-        
-        bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        
-        textField.isEnabled = false
-        textField.backgroundColor = UIColor.gray
+        if !isPurchased {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            addBannerViewToView(bannerView)
+            
+            bannerView.adUnitID = bannerAdsUnitID
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+            
+            textField.isEnabled = false
+            textField.backgroundColor = UIColor.gray
+            
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                image: UIImage(named: "unlock"),
+                style: .plain,
+                target: self,
+                action: #selector(didTapUnlock)
+            )
+        }
         
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
@@ -45,16 +56,45 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
         textField.makeRound()
         textField.layer.backgroundColor = UIColor.white.cgColor
         
-        navigationController?.navigationBar.tintColor = UIColor.black
+        setupColor()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         showColor()
+        
+        if isPurchased {
+            removeAds()
+        }
+    }
+    
+    private func setupColor() {
+        if #available(iOS 13, *) {
+            tabBarController?.tabBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            tabBarController?.tabBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+        } else {
+            tabBarController?.tabBar.tintColor = .black
+            tabBarController?.tabBar.barTintColor = .white
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = .black
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupColor()
+    }
+    
+    @objc private func didTapUnlock() {
+        let vc = PurchasingPopupViewController()
+        vc.delegate = self
+        tabBarController?.present(vc, animated: true)
     }
     
     @IBAction func OnRefreshAction(_ sender: Any) {
         textField.text = "000000"
-        UtilitiesConverter.rgb = nil
+        ColorConverter.rgb = nil
         showColor()
     }
     
@@ -84,15 +124,15 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func textFieldEditingChange(_ sender: UITextField) {
         sender.text = sender.text?.uppercased()
-        UtilitiesConverter.rgb = nil
+        ColorConverter.rgb = nil
         showColor()
     }
 
     func showColor() {
-        let rgbValue = UtilitiesConverter.rgb ?? UtilitiesConverter.ConvertHexColorToRGB(hexString: textField.text!)
+        let rgbValue = ColorConverter.rgb ?? ColorConverter.ConvertHexColorToRGB(hexString: textField.text!)
         
-        if let rgb = UtilitiesConverter.rgb  {
-            let hex = UtilitiesConverter.ConvertRGBToHex(rgb: rgb)
+        if let rgb = ColorConverter.rgb  {
+            let hex = ColorConverter.ConvertRGBToHex(rgb: rgb)
             textField.text = hex
         }
         
@@ -102,7 +142,7 @@ class HexConverterViewController: UIViewController, UITextFieldDelegate {
         let alpha = CGFloat(1.0)
         
         viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-        UtilitiesConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
+        ColorConverter.rgb = (red: red, green: green, blue: blue, alpha: alpha)
     }
 }
 
@@ -135,5 +175,12 @@ extension HexConverterViewController: GADBannerViewDelegate {
         UIView.animate(withDuration: 1, animations: {
             bannerView.alpha = 1
         })
+    }
+}
+
+extension HexConverterViewController: PurchasingPopupViewControllerDelegate {
+    func removeAds() {
+        bannerView?.removeFromSuperview()
+        navigationItem.leftBarButtonItem = nil
     }
 }

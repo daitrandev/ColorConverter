@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SideMenu
-import MessageUI
 import GoogleMobileAds
 
 class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBannerViewDelegate {
@@ -28,6 +26,8 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
     @IBOutlet weak var yValueSlider: UISlider!
     @IBOutlet weak var kValueSlider: UISlider!
     
+    @IBOutlet weak var viewColor: UIView!
+    
     var rgb: RGB?
     
     lazy var valueLabelArray:[UILabel] = [cValueLabel, mValueLabel, yValueLabel, kValueLabel]
@@ -41,39 +41,74 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
     let mainLabelColor: [UIColor] = [UIColor.black, UIColor.orange]
     
     var bannerView: GADBannerView!
-    
-    @IBOutlet weak var viewColor: UIView!
+        
+    var isPurchased: Bool {
+        GlobalKeychain.getBool(for: KeychainKey.isPurchased) ?? false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
   
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        addBannerViewToView(bannerView)
-        
-        bannerView.adUnitID = "ca-app-pub-7005013141953077/9075404978"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        
-        for i in 0..<sliderArray.count {
-            sliderArray[i].isEnabled = false
+        if !isPurchased {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            addBannerViewToView(bannerView)
+            
+            bannerView.adUnitID = bannerAdsUnitID
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+            
+            for i in 0..<sliderArray.count {
+                sliderArray[i].isEnabled = false
+            }
+            
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                image: UIImage(named: "unlock"),
+                style: .plain,
+                target: self,
+                action: #selector(didTapUnlock)
+            )
         }
         
         // Do any additional setup after loading the view.
         viewColor.layer.cornerRadius = 10
         viewColor.layer.masksToBounds = true
         
-        navigationController?.navigationBar.tintColor = UIColor.black
+        setupColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showColor()
+        
+        if isPurchased {
+            removeAds()
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func setupColor() {
+        if #available(iOS 13, *) {
+            tabBarController?.tabBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            tabBarController?.tabBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+        } else {
+            tabBarController?.tabBar.tintColor = .black
+            tabBarController?.tabBar.barTintColor = .white
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = .black
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupColor()
+    }
+    
+    @objc private func didTapUnlock() {
+        let vc = PurchasingPopupViewController()
+        vc.delegate = self
+        tabBarController?.present(vc, animated: true)
     }
     
     @IBAction func OnRefreshAction(_ sender: Any) {
@@ -81,13 +116,13 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
             valueLabelArray[i].text = "128"
             sliderArray[i].value = 128
         }
-        UtilitiesConverter.rgb = nil
+        ColorConverter.rgb = nil
         showColor()
     }
     
     @IBAction func OnSlideValueChanged(_ sender: UISlider) {
         valueLabelArray[sender.tag].text = String(Int(sender.value))
-        UtilitiesConverter.rgb = nil
+        ColorConverter.rgb = nil
         showColor()
     }
     
@@ -104,10 +139,10 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
     }
     
     func showColor() {
-        let rgbValue = UtilitiesConverter.rgb ?? UtilitiesConverter.CMYKtoRGB(c: CGFloat(Int(sliderArray[0].value))/255, m: CGFloat(Int(sliderArray[1].value))/255, y: CGFloat(Int(sliderArray[2].value))/255, k: CGFloat(Int(sliderArray[3].value))/255)
+        let rgbValue = ColorConverter.rgb ?? ColorConverter.CMYKtoRGB(c: CGFloat(Int(sliderArray[0].value))/255, m: CGFloat(Int(sliderArray[1].value))/255, y: CGFloat(Int(sliderArray[2].value))/255, k: CGFloat(Int(sliderArray[3].value))/255)
         
-        if let rgb = UtilitiesConverter.rgb  {
-            let cmyk = UtilitiesConverter.RGBtoCMYK(r: rgb.red, g: rgb.green, b: rgb.blue)
+        if let rgb = ColorConverter.rgb  {
+            let cmyk = ColorConverter.RGBtoCMYK(r: rgb.red, g: rgb.green, b: rgb.blue)
             sliderArray[0].value = Float(cmyk.c)*255
             sliderArray[1].value = Float(cmyk.m)*255
             sliderArray[2].value = Float(cmyk.y)*255
@@ -123,7 +158,7 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
         let alpha = 1.0
         viewColor?.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: CGFloat(alpha))
 
-        UtilitiesConverter.rgb = (red: rgbValue.red, green: rgbValue.green, blue: rgbValue.blue, alpha: CGFloat(1.0))
+        ColorConverter.rgb = (red: rgbValue.red, green: rgbValue.green, blue: rgbValue.blue, alpha: CGFloat(1.0))
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
@@ -154,5 +189,12 @@ class CMYKConverterViewController: UIViewController, UITextFieldDelegate, GADBan
         UIView.animate(withDuration: 1, animations: {
             bannerView.alpha = 1
         })
+    }
+}
+
+extension CMYKConverterViewController: PurchasingPopupViewControllerDelegate {
+    func removeAds() {
+        bannerView?.removeFromSuperview()
+        navigationItem.leftBarButtonItem = nil
     }
 }
