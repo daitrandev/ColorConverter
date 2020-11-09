@@ -8,16 +8,45 @@
 
 import UIKit
 import GoogleMobileAds
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-7005013141953077~7885967451")
+        UIFont.loadCustomFonts()
+        
+        if UserDefaults.standard.object(forKey: "isFirstRun") == nil {
+            GlobalKeychain.clear(for: KeychainKey.isPurchased)
+            
+            UserDefaults.standard.set(true, forKey: "isFirstRun")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if let isPurchased = GlobalKeychain.getBool(for: KeychainKey.isPurchased), isPurchased {
+            return true
+        }
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
+        
         return true
     }
 
